@@ -39,5 +39,16 @@ export default [
     languageOptions: {
       parser: tseslint.parser,
     },
+    rules: {
+      // Require explicit return types on exported TS functions as part of the repo's API contract
+      "@typescript-eslint/explicit-function-return-type": [
+        "error",
+        {
+          allowExpressions: true,
+          allowHigherOrderFunctions: true,
+          allowTypedFunctionExpressions: true,
+        },
+      ],
+    },
   },
 ];

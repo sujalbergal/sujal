@@ -42,6 +42,8 @@ function mapGame(row: GameSelectionRow): Game {
     };
 }
 
+// Drizzle's joined builder requires inferred selected-field generics for downstream row typing.
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type -- inference preserves the concrete query shape
 function baseGamesQuery(db: Database) {
     return db
         .select(gameSelection)

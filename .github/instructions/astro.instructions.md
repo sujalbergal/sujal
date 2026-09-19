@@ -96,6 +96,30 @@ const game = await getGameById(getDatabase(), Number(id));
 </Layout>
 ```
 
+## Reusable component contracts
+
+Each reusable `.astro` component should define a typed `Props` interface in frontmatter and document the contract so the component API is self-explanatory. Explain required values, optional flags, and any non-obvious behavior. Comments should clarify intent or constraints, not restate the prop names or markup.
+
+```astro
+---
+interface Props {
+  /** Title displayed in the page header. */
+  title: string;
+  /** Optional description shown beneath the title. */
+  description?: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<section>
+  <h2>{title}</h2>
+  {description && <p>{description}</p>}
+</section>
+```
+
+If a component is reused in multiple places, document the props with JSDoc/TSDoc-style comments directly on the relevant interface fields so the API stays discoverable.
+
 ## Data Access
 
 - Build-time data comes from a local SQLite database via **Drizzle ORM + Node SQLite** (see [`drizzle.instructions.md`](drizzle.instructions.md)).

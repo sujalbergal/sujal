@@ -51,6 +51,15 @@ Refer to technology-specific instruction files:
 - Use props for configuration, not duplication
 - Document component APIs with TypeScript types
 
+### Documentation and comments
+
+- Comment intent, not mechanics. Explain why a piece of code exists, the decision behind it, or the constraint it satisfies — not the obvious line-by-line behavior the code already shows.
+- Prefer docs on exported APIs and component contracts over inline comments that repeat code. If the code is self-evident, omit the comment.
+- Keep comments current. When code changes, update or delete the related comment in the same change.
+- Document non-obvious edge cases, trade-offs, and invariants so future edits do not silently undo the original reasoning.
+
+See [`astro.instructions.md`](astro.instructions.md) and [`drizzle.instructions.md`](drizzle.instructions.md) for the project standards on component props and exported function documentation.
+
 ## Development Workflow
 
 1. **Choose the right tool**: 

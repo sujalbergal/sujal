@@ -40,6 +40,13 @@ ALL UI components MUST use dark theme colors:
 - Mobile-first approach
 - Ensure readability on all screen sizes
 
+## TypeScript formatting rules
+
+- Prefer explicit parameter and return types for exported TypeScript functions and reusable helpers.
+- Use named interfaces for object contracts and component prop shapes instead of anonymous inline object types when the structure is reused or documented.
+- Keep comments focused on the contract, decision, or edge case; avoid comments that paraphrase the code directly.
+- Use ESLint to enforce the explicit return-type pattern in TS files where practical, and treat lint failures as part of the formatting/quality contract.
+
 ## Utility Classes
 
 - Prefer utility classes over custom CSS when possible
