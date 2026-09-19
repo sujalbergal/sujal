@@ -55,9 +55,33 @@ export async function getAllGameIds(db: Database): Promise<number[]> {
 - Map raw rows to the app-facing `Game`/`Publisher`/`Category` types in one place; don't leak Drizzle row shapes into components.
 - Keep ordering/lookup logic in `games.ts`, not in pages.
 
+## Documentation and comments
+
+Every exported function in `db/` and `src/lib/` must have a TSDoc/JSDoc block immediately above it. The comment should explain the function's purpose, document each parameter, and describe the return value. Keep the description focused on intent and behavior, not on restating the obvious implementation.
+
+```ts
+/**
+ * Returns the ordered list of game IDs used to generate static pages.
+ * @param db Database connection used to read the game catalog.
+ * @returns Game IDs sorted by title so the static build remains deterministic.
+ */
+export async function getAllGameIds(db: Database): Promise<number[]> {
+  // implementation
+}
+```
+
+Document the injected `db` argument explicitly so the testing pattern stays clear, and keep comments current whenever the behavior or contract changes.
+
 ## Determinism
 
 Seed-derived values must be reproducible across builds. Derive star ratings from a stable hash of the title (`ratingFromTitle`) — **never** `Math.random()`.
+
+## TypeScript formatting standards
+
+- Prefer explicit parameter and return types on exported functions and reusable helpers.
+- Use `interface` for object contracts and exported props when they represent a shape.
+- Keep docs and naming close to the declaration so the contract is obvious in the file itself.
+- Use ESLint's TypeScript rules to enforce the explicit return-type pattern where practical.
 
 ## Testing
 
