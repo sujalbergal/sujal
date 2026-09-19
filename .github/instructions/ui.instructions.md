@@ -18,6 +18,14 @@ Refer to technology-specific instruction files:
 - [`astro.instructions.md`](astro.instructions.md) - Astro pages, layouts, and components
 - [`style.instructions.md`](style.instructions.md) - Tailwind CSS styling patterns
 
+## Commenting and documentation standards
+
+- Comment intent, not mechanics. Explain the reason for a choice, a trade-off, or a product rule behind a block of code.
+- Avoid restating obvious code or markup. If the function name or variable names already make the behavior clear, let the code speak for itself.
+- Keep comments current. Outdated comments are a bug and should be updated or removed in the same change that touches the related code.
+- Document reusable `.astro` component APIs with typed `Props` interfaces and, when needed, a short contract description.
+- Exported helpers in `db/` and `src/lib/` should also include TSDoc/JSDoc comments describing parameters and return values.
+
 ## Core Principles
 
 ### Testability

@@ -63,6 +63,27 @@ Seed-derived values must be reproducible across builds. Derive star ratings from
 
 Unit-test transforms directly and helpers against `createTestDatabase()`. See [`unit-tests.instructions.md`](unit-tests.instructions.md).
 
+## Documentation and comment standards
+
+Every exported function in `db/**/*.ts` and `src/lib/*.ts` should include a TSDoc/JSDoc block. The goal is to explain the helper's contract: why it exists, what it expects, what it returns, and any invariants it guarantees. This is especially important in the data layer because the injectable `db` argument is part of the testing pattern and the build-time data access flow.
+
+- Comment intent, not mechanics. Explain the reason for the helper or the business rule it enforces, not the obvious `map()`, `filter()`, or SQL steps.
+- Treat outdated comments as bugs. Update or remove them in the same change that changes the related code.
+- Document the `db` argument and the return value so the testability pattern remains obvious to future contributors.
+- Keep the description aligned with the function signature and avoid repeating the code in prose.
+
+```ts
+/**
+ * Return all game records in stable title order for the home page.
+ *
+ * @param db - Drizzle database client used by Astro frontmatter and tests.
+ * @returns A list of mapped `Game` objects ready for rendering.
+ */
+export async function getAllGames(db: Database): Promise<Game[]> {
+  // ...
+}
+```
+
 ## Node.js requirement
 
 Node.js 22.13 or later is required because the data layer uses the built-in `node:sqlite` module without an experimental flag. Do not introduce third-party SQLite drivers that ship platform-specific binaries.

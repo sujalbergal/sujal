@@ -56,6 +56,22 @@ npm run db:setup      # migrate + seed (run automatically by predev/prebuild)
 > [!NOTE]
 > Seeding is idempotent — it skips games that already exist (matched by title) rather than reconciling changed rows. CI always starts from a clean database, so it reflects `games.csv` exactly. Locally, if you edit or remove rows in `games.csv`, delete `tailspin.db` and re-run `npm run db:setup` to fully regenerate.
 
+## Coding standards
+
+The project standards live in the instruction files under [`.github/instructions/`](.github/instructions/) and are summarized here for quick reference:
+
+- Comment intent, not mechanics: explain why a decision exists instead of restating the code.
+- Exported functions in `db/` and `src/lib/` must include TSDoc/JSDoc comments describing their purpose, parameters, and return values.
+- Reusable `.astro` components should define typed `Props` interfaces and document the component contract when the semantics are not obvious.
+- TypeScript formatting follows the repo rules: single quotes, semicolons, and consistent indentation that matches the surrounding code; the project ESLint config enforces the core checks.
+- Keep comments and documentation current as part of the same change that touches the related code.
+
+See:
+- [`.github/instructions/astro.instructions.md`](.github/instructions/astro.instructions.md)
+- [`.github/instructions/drizzle.instructions.md`](.github/instructions/drizzle.instructions.md)
+- [`.github/instructions/style.instructions.md`](.github/instructions/style.instructions.md)
+- [`.github/instructions/ui.instructions.md`](.github/instructions/ui.instructions.md)
+
 ## Running tests
 
 ```bash
